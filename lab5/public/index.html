@@ -1,0 +1,64 @@
+<html lang="en">
+    <head>
+        <title>Pokemon Search - Kevin Cua</title>
+    </head>
+    <body>
+        <script>
+            function readID(event) {
+                event.preventDefault();
+
+                let element = document.querySelector("#pokeID");
+
+                fetch("/id/" + element.value)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((processed) => {
+                    let report = document.querySelector("#reportingArea");
+
+                    if(processed.error) {
+                        report.innerHTML = processed.error;
+                    }
+                    else {
+                        report.innerHTML = processed.name;
+                    }
+                });
+            }
+
+            function readName(event) {
+                event.preventDefault();
+
+                let element = document.querySelector("#pokeName");
+
+                fetch("/name/" + element.value)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((processed) => {
+                    let report = document.querySelector("#reportingArea");
+
+                    if(processed.error) {
+                        report.innerHTML = processed.error;
+                    }
+                    else {
+                        report.innerHTML = processed.name;
+                    }
+                });
+            }
+        </script>
+        <h1>Find Any Pokemon!</h1>
+        <h2>ID</h2>
+        <form onsubmit="readID(event)">
+            <input id="pokeID" type="text" placeholder="Enter Pokemon ID">
+            <button>Submit</button>
+        </form>
+        <h2>Name</h2>
+        <form onsubmit="readName(event)">
+            <input id="pokeName" type="text" placeholder="Enter Pokemon Name">
+            <button>Submit</button>
+        </form>
+        <hr>
+        <h2>Result</h2>
+        <div id="reportingArea"></div>
+    </body>
+</html>
