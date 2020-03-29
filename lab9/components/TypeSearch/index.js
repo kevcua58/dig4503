@@ -26,10 +26,8 @@ class TypeSearch extends React.Component {
         return(
             <div className={styles.body}>
                 <h2 className={styles.subheadings}>Search by Type</h2>
-                <form onSubmit={this.readType}>
-                    <input id="pokeType" className={styles.input} type="text" placeholder="Enter Pokemon Type"></input>
-                    <button className={styles.submit_button}>Submit</button>
-                </form>
+                <input id="pokeType" className={styles.input} type="text" placeholder="Enter Pokemon Type"></input>
+                <button onClick={this.readType} className={styles.submit_button}>Submit</button>
             </div>
         );
     }
